@@ -1,9 +1,10 @@
+import os
 from typing import Annotated
+
+from dotenv import load_dotenv
 from fastapi import Depends
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, Session, declarative_base
-import os
-from dotenv import load_dotenv
+from sqlalchemy.orm import Session, declarative_base, sessionmaker
 
 load_dotenv()
 
@@ -22,12 +23,15 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
 
+from src.entities.todo import Todo  # noqa: F401
+from src.entities.user import User  # noqa: F401
+
 def get_db():
     db = SessionLocal()
     try:
         yield db
     finally:
         db.close()
-        
-DbSession = Annotated[Session, Depends(get_db)]
 
+
+DbSession = Annotated[Session, Depends(get_db)]

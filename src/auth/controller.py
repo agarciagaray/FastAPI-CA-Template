@@ -16,7 +16,16 @@ router = APIRouter(
 @limiter.limit("5/hour")
 async def register_user(request: Request, db: DbSession,
                       register_user_request: models.RegisterUserRequest):
-    service.register_user(db, register_user_request)
+    user = service.register_user(db, register_user_request)
+    return {
+        "message": "User registered successfully",
+        "user": {
+            "id": user.id,  # Asegúrate de que el modelo de usuario tenga un atributo 'id'
+            "email": user.email,  # O cualquier otro campo que desees incluir
+            "first_name": user.first_name,
+            "last_name": user.last_name
+        }
+    }
 
 
 @router.post("/token", response_model=models.Token)

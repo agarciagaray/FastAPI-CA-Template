@@ -1,16 +1,20 @@
-from datetime import timedelta, datetime, timezone
+import logging
+from datetime import datetime, timedelta, timezone
 from typing import Annotated
 from uuid import UUID, uuid4
-from fastapi import Depends
-from passlib.context import CryptContext
+
 import jwt
+from fastapi import Depends, HTTPException
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jwt import PyJWTError
+from passlib.context import CryptContext
 from sqlalchemy.orm import Session
+
+from src.database.core import DbSession
 from src.entities.user import User
-from . import models
-from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
+
 from ..exceptions import AuthenticationError
-import logging
+from . import models
 
 # You would want to store this in an environment variable or a secret manager
 SECRET_KEY = '197b2c37c391bed93fe80344fe73b806947a65e36206e05a1a23c2fa12702fe3'
@@ -58,30 +62,44 @@ def verify_token(token: str) -> models.TokenData:
 
 def register_user(db: Session, register_user_request: models.RegisterUserRequest) -> None:
     try:
+        # Convertir a UTF-8 antes de guardar en la base de datos
+        password = register_user_request.password.encode(
+            'utf-8').decode('utf-8')
         create_user_model = User(
             id=uuid4(),
             email=register_user_request.email,
             first_name=register_user_request.first_name,
             last_name=register_user_request.last_name,
-            password_hash=get_password_hash(register_user_request.password)
-        )    
+            password_hash=get_password_hash(password)
+        )
         db.add(create_user_model)
         db.commit()
+        db.refresh(create_user_model)  # Esto es importante para obtener el objeto con el ID generado
+        return create_user_model  # Devuelve el objeto de usuario creado
     except Exception as e:
-        logging.error(f"Failed to register user: {register_user_request.email}. Error: {str(e)}")
+        logging.error(
+            f"Failed to register user: {register_user_request.email}. Error: {str(e)}")
         raise
-    
-    
+
+
 def get_current_user(token: Annotated[str, Depends(oauth2_bearer)]) -> models.TokenData:
     return verify_token(token)
+
+def get_user_by_id(db: DbSession, user_id: UUID):
+    # Asumiendo que tienes un modelo User definido en models.py
+    user = db.query(models.User).filter(models.User.id == user_id).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    return user
 
 CurrentUser = Annotated[models.TokenData, Depends(get_current_user)]
 
 
 def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm, Depends()],
-                                 db: Session) -> models.Token:
+                           db: Session) -> models.Token:
     user = authenticate_user(form_data.username, form_data.password, db)
     if not user:
         raise AuthenticationError()
-    token = create_access_token(user.email, user.id, timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
+    token = create_access_token(user.email, user.id, timedelta(
+        minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
     return models.Token(access_token=token, token_type='bearer')

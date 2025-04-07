@@ -1,28 +1,30 @@
 services:
   api:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/cleanfastapi
+      - DATABASE_URL=mysql+pymysql://root:password@mariadb:3306/cleanfastapi
     depends_on:
-      - db
+      - mariadb
     volumes:
       - ./src:/app/src
+      - .:/app # Monta todo el directorio raíz del proyecto
     command: uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
 
-  db:
-    image: postgres:17
+  mariadb:
+    image: mariadb:latest
     environment:
-      - POSTGRES_DB=cleanfastapi
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - MYSQL_DATABASE=cleanfastapi
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=password
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - mariadb_data:/var/lib/mysql
     ports:
-      - "5432:5432"
+      - "5306:3306"
 
 volumes:
-  postgres_data:
+  mariadb_data:
