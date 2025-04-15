@@ -1,6 +1,6 @@
 # Nombre de tu Proyecto
 # FastAPI Template · ![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Build](https://github.com/tu-usuario/tu-repositorio/workflows/build/badge.svg) 
+![Build](https://github.com/agarciagaray/FastAPI-CA-Template/workflows/build/badge.svg) 
 [![Dependabot Status](https://img.shields.io/badge/Dependabot-active-brightgreen.svg)](https://dependabot.com)
 
 <div>
