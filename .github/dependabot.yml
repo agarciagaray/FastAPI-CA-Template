@@ -1,0 +1,7 @@
+version: 2
+updates:
+  - package-ecosystem: "pip"  # Para dependencias de Python (FastAPI, SQLAlchemy, etc.)
+    directory: "/"            # Carpeta donde está requirements.txt
+    schedule:
+      interval: "daily"       # Revisa actualizaciones diariamente
+    open-pull-requests-limit: 10

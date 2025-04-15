@@ -1,3 +1,18 @@
+# Nombre de tu Proyecto
+# FastAPI Template · ![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Build](https://github.com/tu-usuario/tu-repositorio/workflows/build/badge.svg) 
+[![Dependabot Status](https://img.shields.io/badge/Dependabot-active-brightgreen.svg)](https://dependabot.com)
+
+<div>
+<img src="assets/fastapi-logo.png" alt="FastAPI Logo" height="60" /> &nbsp; &nbsp;
+<img src="assets/sqlalchemy-logo.png" alt="SQLAlchemy Logo" height="60" /> &nbsp; &nbsp;
+<img src="assets/mysql-logo.png" alt="MySQL Logo" height="60" /> &nbsp; &nbsp;
+<img src="assets/postgresql-logo.png" alt="PostgreSQL Logo" height="60" /> &nbsp; &nbsp;
+<img src="assets/sqlite-logo.png" alt="SQLite Logo" height="60" /> &nbsp; &nbsp;
+<img src="assets/oauth2-logo.png" alt="OAuth2 Logo" height="60" /> &nbsp; &nbsp;
+<img src="assets/jwt-logo.png" alt="JWT Logo" height="60" />
+</div>
+
 # Clean Architecture Template
 
 What's included in the template?
