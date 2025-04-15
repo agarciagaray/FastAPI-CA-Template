@@ -3,7 +3,9 @@
   .env
   .env.example
   .gitignore
+  alembic.ini
   docker-compose.yml
+  docker-compose_postgre.yml
   Dockerfile
   estructura.py
   estructura.txt
@@ -55,6 +57,9 @@
         197900e25d259ab4af2e31e78501787d7a6daa
       0f/
         287626535fb343ee1f6e3f147ea6677584c23d
+        4431dab1258110dabe1f99da0f78af6ff09b99
+      11/
+        a31c6f8284fcb893e8b28cd746641241b5875e
       13/
         93ed53ad1036937c4c5cf896d73ec5d7409e63
       17/
@@ -63,8 +68,12 @@
         71828f850f28308a428599d806bc19157cf439
       1a/
         c0c0557bd8f78874120859ab42dbfe1ef896dd
+      1d/
+        aea4cfdec27cf62ad2318a978371ef2576f484
       25/
         bd48d775ce418eeeef754f165e466d8b27dc93
+      2a/
+        06739a4f519ad2c81376b913a250192add13f2
       37/
         b666fed4c707b58b107fea2cd5880fbca2d841
       3c/
@@ -75,6 +84,8 @@
         46b9bbb5931593aed38b43a298e33dee2150df
       43/
         bc5bb387685fe3f95f6d947c92d47b47d7a698
+      48/
+        0b130d632ca677c11f23d9fe82cf4014d15e0c
       4c/
         3bf8b1ac7b87dfab650213c480e9c72c032d72
       4f/
@@ -91,11 +102,15 @@
         f5dada83d601a8da87c1879bc9cec276b62ac1
       65/
         05a7f8ba322a4db0ff8ec5c95e8903aa063b0d
+      67/
+        a22b21d3ddee41f6088a3f1d889b56f0931e2a
       68/
         517cbe698042779f75f07ba53083cb1b9ca30c
         ef5d23803581ea7cdb0dabddc475b13db55911
       69/
         23e1bd9d0d90e484424f3baf7a0aee3a84c426
+      70/
+        17272e0a28a5bdb99df6facebe54d058982d16
       71/
         c458bbd392a1d00a73cb12e463f356024162ee
       72/
@@ -106,23 +121,40 @@
         5823fe4b327c44e86b6ace144bc862e5fb2229
       77/
         5f2d25c3663fde325ed693fe67987e54823150
+      79/
+        73709664f531315d79f0457482ae9afd1d10c1
+      7a/
+        2d30981c490045ee90e6d0db7aa2669fef469e
       7f/
         d810aeb26d2264cbf8c96f6dc6b9cdc24cbc94
+      81/
+        9ff5099cb22eb8ac94625bfff0953628c20745
       86/
         e99432a10b163b7bbb69e2227a919a699fb47c
       8a/
         c64269d5c3de2eae24958135d73a8aa4a68fb4
+      8d/
+        04aea5334ef0196a3efffd53c070e89aca0aa7
       8f/
         91ee59fd8e507d2ebe5fafcce7bcc39ea8fe48
+      98/
+        e4f9c44effe479ed38c66ba922e7bcc672916f
       9c/
         3862c24349ba6588a6addc58bf86ec97b5a945
+        96749587f6138bc500a1b49a3c398260a2ab0b
       9e/
         9910939fdb4a8bbb59d14ba0eceb40d57bccd6
         f300bf4a4491e254c48d6f84d6d6ced2750a6e
       9f/
         7d007bfaf4654fad3df2b26a4374a81bf0d95a
+      a0/
+        716c2ca3af1d0ec31855e6a9c081a256213971
+        8922442faba3e60ae2546a6396a71cba8a7382
       a4/
         505161262ffe0da1fd8491bf2f75dbdbe61211
+      a6/
+        8506b7a0375f330aeb113796c8f1f4d8566305
+        c4edc58b20c6b47b6fc9f2ff13496f98bd40a2
       ac/
         727bbde3413597664b3950cacb9bf2bea974d5
       ae/
@@ -133,9 +165,12 @@
         52bdaceb3a67152ed0142b5efe3281e25cd563
       b4/
         e9c4329649689fc850d451afd92b301fdb43db
+      b5/
+        7ca93f57883ccc5e1d8037d547beb9a74df146
       b6/
         15c36b4915d2aba7df08cb84758c46eb811eeb
       b8/
+        0c0b7a119a629cd903cae8d44c3ffb554f395d
         9152e55cad0a56213acab5ad21bd75c7553e22
       bf/
         492dbbfe9ed5af04cad35d8676f2b5dc0229f3
@@ -143,11 +178,22 @@
         dc7d9fce2dca0b421b57aeb55ee652e28698c8
       c3/
         617f546016c528856aa9a0cd63a09624bee3e9
+        d7819f669ae8c3df6441c24bf293b7e4af377f
+      c6/
+        830b8f6fc880e7d18cb63ffe4b97449085d634
+        ae5187e802c57faf77f4a8043ba5454c869063
       c7/
         9086f8b7296e22cfb7d0fdabf81f8e17ea93a0
         94dff8c536ffdd2df3401bf2b14dd215d2aa71
+        e255a7aaf0be00c3414c610388cc02babd7307
       c8/
         e5046f49d574428745a5c608c921a323ceedea
+      d1/
+        9f775a13e6af540a43242450d807397fe90c87
+      d3/
+        bd685b4a2510f12c87ab5d441a1ef63f83e45c
+      db/
+        ee61befed042a3848559884924ffe3afef07cb
       dd/
         329d797cc8e89e9f6e9b3959f3af888b556cbc
       de/
@@ -160,12 +206,16 @@
         9de29bb2d1d6434b8b29ae775ad8c2e48c5391
       ea/
         299756800d59b2a80156ce0b770e5bc2ef3fcc
+      ec/
+        e89d0cfb8baa585d8784fd6c6b6b5e1d4cba01
       ef/
         aab20507453151115f04b90b3ae0d004c45e10
       f0/
         a586521dbecef47fd19b85c15abd52b9be70a6
       f8/
         bec4f2ea6290aade0675dda94f44dfecbb3e0f
+      fa/
+        dafc57a198195d7e226fe993b234840dd5fb58
       info/
       pack/
     refs/
@@ -178,6 +228,9 @@
           HEAD
           main
       tags/
+  .github/
+    workflows/
+      python-package.yml
   .venv/
     .gitignore
     pyvenv.cfg
@@ -2017,6 +2070,34 @@
           REQUESTED
           top_level.txt
           WHEEL
+        pymysql/
+          charset.py
+          connections.py
+          converters.py
+          cursors.py
+          err.py
+          optionfile.py
+          protocol.py
+          times.py
+          _auth.py
+          __init__.py
+          constants/
+            CLIENT.py
+            COMMAND.py
+            CR.py
+            ER.py
+            FIELD_TYPE.py
+            FLAG.py
+            SERVER_STATUS.py
+            __init__.py
+        PyMySQL-1.1.1.dist-info/
+          INSTALLER
+          LICENSE
+          METADATA
+          RECORD
+          REQUESTED
+          top_level.txt
+          WHEEL
         pytest/
           py.typed
           __init__.py
@@ -2650,6 +2731,12 @@
       pythonw.exe
       ruff.exe
       uvicorn.exe
+  alembic/
+    env.py
+    README
+    script.py.mako
+    versions/
+      b1b2a9c95fa2_initial_migration.py
   src/
     .DS_Store
     api.py
@@ -2667,6 +2754,7 @@
     database/
       .DS_Store
       core.py
+      types.py
     entities/
       .DS_Store
       todo.py

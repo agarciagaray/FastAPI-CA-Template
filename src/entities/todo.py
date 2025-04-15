@@ -6,6 +6,8 @@ from sqlalchemy import (Boolean, Column, DateTime, Enum, ForeignKey,
                         ForeignKeyConstraint, String)
 from sqlalchemy.dialects.postgresql import ARRAY, UUID
 
+from src.database.types import UniversalUUID
+
 from ..database.core import Base
 
 
@@ -20,9 +22,10 @@ class Priority(enum.Enum):
 class Todo(Base):
     __tablename__ = 'todos'
 
-    id = Column(String(36), primary_key=True, default=lambda: str(
-        uuid.uuid4()))  # Almacena UUID como string
-    user_id = Column(String(36), nullable=False)
+    # Mantener id como String ya que así está en la base de datos
+    id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+    # Mantener user_id como UniversalUUID ya que así está en la base de datos
+    user_id = Column(UniversalUUID, nullable=False)
     description = Column(String(500), nullable=False)
     due_date = Column(DateTime, nullable=True)
     is_completed = Column(Boolean, nullable=False, default=False)
@@ -38,3 +41,4 @@ class Todo(Base):
 
     def __repr__(self):
         return f"<Todo(description='{self.description}', due_date='{self.due_date}', is_completed={self.is_completed})>"
+
