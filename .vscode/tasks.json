@@ -1,0 +1,17 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "kill-uvicorn-python",
+            "type": "shell",
+            "command": "taskkill /f /im uvicorn.exe & taskkill /f /im python.exe",
+            "problemMatcher": [],
+            "presentation": {
+            "echo": true,
+            "reveal": "always",
+            "focus": false,
+            "panel": "shared"
+            }
+        }
+    ]
+}
